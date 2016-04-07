@@ -12,6 +12,8 @@ class MessagesController < ApplicationController
       parsed_message[:subject] = raw_message.subject
       parsed_message[:from] = raw_message.from[0].mailbox + '@' + raw_message.from[0].host
       parsed_message[:to] = 'johnandkelseyscoolproject@gmail.com'
+      parsed_message[:read] = raw_message.read?
+      parsed_message[:received_date] = raw_message.date
       @messages << parsed_message
     end
     gmailclient.disconnect
@@ -31,6 +33,8 @@ class MessagesController < ApplicationController
     @message[:subject] = raw_message.subject
     @message[:from] = raw_message.from[0].mailbox + '@' + raw_message.from[0].host
     @message[:to] = 'johnandkelseyscoolproject@gmail.com'
+    parsed_message[:read] = raw_message.read?
+    parsed_message[:received_date] = raw_message.date
     gmailclient.disconnect
 
     respond_to do |format|
