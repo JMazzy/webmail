@@ -1,13 +1,24 @@
 class MessagesController < ApplicationController
 
   def index
-    @messages = return_messages
+    # @messages = return_messages
+    gmailclient = Gmail.connect('johnandkelseyscoolproject', 'CauchySchwartz') 
+    @messages = gmailclient.inbox.emails
+    gmailclient.disconnect
+
     puts 'Messages'
     pp @messages
-    puts "Messages done"
-    respond_to do |format|
-      format.json { render json: @messages.to_json }
-    end
+    pp @messages[2]
+    pp @messages[2].message.text_part.body.raw_source
+    # @messages.each do |message|
+    #   pp message.text_part.body.raw_source
+    # end
+
+    # puts "Messages done"
+    # respond_to do |format|
+    #   format.json { render json: @messages.to_json }
+    # end
+
   end
 
   def show
@@ -18,9 +29,13 @@ class MessagesController < ApplicationController
 
   def return_messages
     messages = []
-    Gmail.connect('johnandkelseyscoolproject', 'CauchySchwartz') do |gmail|
-      messages = gmail.inbox.emails(:unread)
-    end
+    gmailclient = Gmail.connect('johnandkelseyscoolproject', 'CauchySchwartz') 
+    messages = gmailclient.inbox.emails
+
+    # do |gmail|
+    #   messages = gmail.inbox.emails(:unread)
+    # end
+    # gmailclient.disconnect
     messages
   end
 end
