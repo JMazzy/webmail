@@ -1,25 +1,21 @@
 class MessagesController < ApplicationController
 
   def index
-    # @messages = return_messages
-    # gmailclient = Gmail.connect('johnandkelseyscoolproject', 'CauchySchwartz') 
-    # @messages = gmailclient.inbox.emails
-    # gmailclient.disconnect
+    @messages = []
+    gmailclient = Gmail.connect('johnandkelseyscoolproject', 'CauchySchwartz') 
+    raw_messages = gmailclient.inbox.emails
 
-    # puts 'Messages'
-    # pp @messages
-    # pp @messages[2]
-    # pp @messages[2].message.text_part.body.raw_source
-    # @messages.each do |message|
-    #   pp message.text_part.body.raw_source
-    # end
+    raw_messages.each do |message|
+      parsed_message = {}
+      parsed_message[:id] = message.uid
+      parsed_message[:body] = message.text_part.body.raw_source
+      parsed_message[:subject] = message.subject
+      parsed_message[:from] = message.from[0].mailbox + '@' + message.from[0].host
+      parsed_message[:to] = 'johnandkelseyscoolproject@gmail.com'
+      @messages << parsed_message
+    end
+    gmailclient.disconnect
 
-    # puts "Messages done"
-    # respond_to do |format|
-    #   format.json { render json: @messages.to_json }
-    # end
-
-    @messages = Message.all
     respond_to do |format|
       format.json { render json: @messages.to_json }
     end
@@ -27,7 +23,6 @@ class MessagesController < ApplicationController
   end
 
   def show
-    # @message = gmail.inbox.emails[:id]
     @message = Message.find(params[:id])
     respond_to do |format|
       format.json { render json: @message.to_json }
@@ -35,16 +30,4 @@ class MessagesController < ApplicationController
   end
 
   private
-
-  def return_messages
-    messages = []
-    gmailclient = Gmail.connect('johnandkelseyscoolproject', 'CauchySchwartz') 
-    messages = gmailclient.inbox.emails
-
-    # do |gmail|
-    #   messages = gmail.inbox.emails(:unread)
-    # end
-    # gmailclient.disconnect
-    messages
-  end
 end
