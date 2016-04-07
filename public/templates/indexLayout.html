@@ -1,6 +1,10 @@
-
-<p>this is a working layout</p>
-
-
-{{ 1+1 }}
-angular works too
+<h1>Inbox</h1>
+<ul>
+  <li ng-repeat='message in messages'>
+    <h2>From: {{ message.from }}</h2>
+    <h2>To: {{ message.to }}</h2>
+    <h3>{{ message.subject }}</h3>
+    <p>{{ message.body }}</p>
+    <h4>Received at {{ message.received_date | date }}</h4>
+  </li>
+</ul>

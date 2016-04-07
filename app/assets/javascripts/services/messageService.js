@@ -7,26 +7,23 @@ webmailApp.factory('messageService', ['Restangular', function(Restangular){
     var messageObj = {};
 
     obj.buildIndex = function(){
-        console.log('in service');
-        if( Object.keys(_messages).length === 0 ){
-            Restangular.all("messages").getList().then(function(data){
-                // console.log('message');
-                // console.log(data[1]);
-                data.forEach( function(datum) {
-                    messageObj = {
-                        id: datum.id,
-                        from: datum.from,
-                        to: datum.to,
-                        subject: datum.subject,
-                        body: datum.body
-                    }
-                    _messages[datum.id] = messageObj;
-                });
-            _currentMessage = _messages[1];
-            // console.log('messages');
-            console.log(_messages);
-            });
-        }
+      if( Object.keys(_messages).length === 0 ){
+        Restangular.all("messages").getList().then(function(data){
+          data.forEach( function(datum) {
+            messageObj = {
+              id: datum.id,
+              from: datum.from,
+              to: datum.to,
+              subject: datum.subject,
+              body: datum.body,
+              received_date: datum.received_date,
+              read: datum.read
+            }
+            _messages[datum.id] = messageObj;
+          });
+        _currentMessage = _messages[1];
+        });
+      }
     };
 
     obj.getMessages = function(){
@@ -50,7 +47,7 @@ webmailApp.factory('messageService', ['Restangular', function(Restangular){
     };
 
     obj.destroy = function ( id ) {
-        Restangular.one("messages", id).remove();
+      Restangular.one("messages", id).remove();
     };
 
     return obj;
