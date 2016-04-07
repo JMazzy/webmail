@@ -1,25 +1,21 @@
 class MessagesController < ApplicationController
 
   def index
-    # @messages = return_messages
-    # gmailclient = Gmail.connect('johnandkelseyscoolproject', 'CauchySchwartz') 
-    # @messages = gmailclient.inbox.emails
-    # gmailclient.disconnect
+    @messages = []
+    gmailclient = Gmail.connect('johnandkelseyscoolproject', 'CauchySchwartz') 
+    raw_messages = gmailclient.inbox.emails
 
-    # puts 'Messages'
-    # pp @messages
-    # pp @messages[2]
-    # pp @messages[2].message.text_part.body.raw_source
-    # @messages.each do |message|
-    #   pp message.text_part.body.raw_source
-    # end
+    raw_messages.each do |raw_message|
+      parsed_message = {}
+      parsed_message[:id] = raw_message.uid
+      parsed_message[:body] = raw_message.text_part.body.raw_source
+      parsed_message[:subject] = raw_message.subject
+      parsed_message[:from] = raw_message.from[0].mailbox + '@' + raw_message.from[0].host
+      parsed_message[:to] = 'johnandkelseyscoolproject@gmail.com'
+      @messages << parsed_message
+    end
+    gmailclient.disconnect
 
-    # puts "Messages done"
-    # respond_to do |format|
-    #   format.json { render json: @messages.to_json }
-    # end
-
-    @messages = Message.all
     respond_to do |format|
       format.json { render json: @messages.to_json }
     end
@@ -27,8 +23,16 @@ class MessagesController < ApplicationController
   end
 
   def show
-    # @message = gmail.inbox.emails[:id]
-    @message = Message.find(params[:id])
+    gmailclient = Gmail.connect('johnandkelseyscoolproject', 'CauchySchwartz') 
+    raw_message = gmailclient.inbox.emails.find{|message| message.uid == params[:id].to_i}
+    @message = {}
+    @message[:id] = raw_message.uid
+    @message[:body] = raw_message.text_part.body.raw_source
+    @message[:subject] = raw_message.subject
+    @message[:from] = raw_message.from[0].mailbox + '@' + raw_message.from[0].host
+    @message[:to] = 'johnandkelseyscoolproject@gmail.com'
+    gmailclient.disconnect
+
     respond_to do |format|
       format.json { render json: @message.to_json }
     end
@@ -36,15 +40,14 @@ class MessagesController < ApplicationController
 
   private
 
-  def return_messages
-    messages = []
-    gmailclient = Gmail.connect('johnandkelseyscoolproject', 'CauchySchwartz') 
-    messages = gmailclient.inbox.emails
-
-    # do |gmail|
-    #   messages = gmail.inbox.emails(:unread)
-    # end
-    # gmailclient.disconnect
-    messages
+  def parse_message(raw_message)
+    parsed_message = {}
+    parsed_message[:id] = raw_message.uid
+    parsed_message[:body] = raw_message.text_part.body.raw_source
+    parsed_message[:subject] = raw_message.subject
+    parsed_message[:from] = raw_message.from[0].mailbox + '@' + raw_message.from[0].host
+    parsed_message[:to] = 'johnandkelseyscoolproject@gmail.com'
+    parsed_message
   end
+
 end
