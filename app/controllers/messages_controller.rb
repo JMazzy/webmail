@@ -1,17 +1,26 @@
 class MessagesController < ApplicationController
-  before_action :login
 
   def index
-    @messages = gmail.inbox.emails
+    @messages = return_messages
+    puts 'Messages'
+    pp @messages
+    puts "Messages done"
+    respond_to do |format|
+      format.json { render json: @messages.to_json }
+    end
   end
 
   def show
-    @message = 
+    @message = gmail.inbox.emails[:id]
   end
 
   private
 
-  def login
-    gmail = Gmail.connect(username, password)
+  def return_messages
+    messages = []
+    Gmail.connect('johnandkelseyscoolproject', 'CauchySchwartz') do |gmail|
+      messages = gmail.inbox.emails(:unread)
+    end
+    messages
   end
 end
