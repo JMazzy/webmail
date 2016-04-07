@@ -7,5 +7,5 @@ Rails.application.routes.draw do
     end
   end
   
-  root to: 'messages#index'
+  root to: 'staticpages#index'
 end
