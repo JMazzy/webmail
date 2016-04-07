@@ -13,10 +13,10 @@ webmailApp.config(['$urlRouterProvider', '$stateProvider', 'RestangularProvider'
 
 
    $stateProvider
-      .state('board', {
-        url: '/board',
+      .state('messages', {
+        url: '/messages',
         templateUrl: '/templates/indexLayout.html',
-        controller: 'BoardCtrl',
+        controller: 'messageCtrl',
         resolve: {
           currentUser: ['Auth', function(Auth) {
           return Auth.currentUser();
@@ -24,8 +24,11 @@ webmailApp.config(['$urlRouterProvider', '$stateProvider', 'RestangularProvider'
 
         }
       })
+
+    $urlRouterProvider.otherwise('/messages');
+
  }]);
 
 webmailApp.run(function($rootScope, $location, Auth){
  $rootScope.$on("$stateChangeError", console.log.bind(console));
-  });
+});

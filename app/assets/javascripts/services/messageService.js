@@ -1,12 +1,14 @@
 webmailApp.factory('messageService', ['Restangular', function(Restangular){
 
     var obj = {};
-    _messages = [];
+    var _messages = [];
+    var currentMessage;
 
     obj.getindex = function(){
-        var idx = Restangular.all("messages").getList().then(function(data){
+        Restangular.all("messages").getList().then(function(data){
             _messages = data;
         });
+        currentMessage = _messages[0];
     };
 
     obj.show = function( id ) {
