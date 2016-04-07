@@ -1,10 +1,18 @@
-<h1>Inbox</h1>
-<ul>
-  <li ng-repeat='message in messages'>
-    <h2>From: {{ message.from }}</h2>
-    <h2>To: {{ message.to }}</h2>
-    <h3>{{ message.subject }}</h3>
-    <p>{{ message.body }}</p>
-    <h4>Received at {{ message.received_date | date }}</h4>
-  </li>
-</ul>
+<h4>Inbox</h4>
+<table>
+  <thead>
+    <tr>
+      <th>From</th>
+      <th> Subject</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr ng-repeat='message in messages'>
+      <td><strong>From: {{ message.from }} </strong></td>
+      <td> <strong> {{ message.subject }}</strong>    {{ message.body }}</td>
+      <td>{{ message.received_date | date }}</td>
+    </tr>
+  </tbody>
+</table>
