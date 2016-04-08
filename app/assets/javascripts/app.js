@@ -22,7 +22,9 @@ webmailApp.config(['$urlRouterProvider', '$stateProvider', 'RestangularProvider'
         // return Auth.currentUser();
         // }],
         allMessages: ['messageService', function(messageService){
-          return messageService.buildIndex();
+          return messageService.buildIndex().then( function() {
+            return messageService.getMessages();
+          });
         }]
       }
     })
