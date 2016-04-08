@@ -14,5 +14,3 @@ test:
 production:
   <<: *default
   database: webmail_production
-  username: webmail
-  password: <%= ENV['WEBMAIL_DATABASE_PASSWORD'] %>
