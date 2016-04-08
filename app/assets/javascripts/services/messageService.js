@@ -16,7 +16,7 @@ webmailApp.factory('messageService', ['Restangular', function(Restangular){
               to: datum.to,
               subject: datum.subject,
               body: datum.body,
-              received_date: datum.received_date,
+              received_date: new Date(datum.received_date),
               read: datum.read
             }
             _messages[datum.id] = messageObj;

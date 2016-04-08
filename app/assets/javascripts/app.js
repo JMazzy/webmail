@@ -1,6 +1,6 @@
 
 
-var webmailApp = angular.module("webmailApp", ['ui.router', 'restangular'] );
+var webmailApp = angular.module("webmailApp", ['ngMaterial', 'ui.router', 'restangular'] );
 
 webmailApp.config(['$urlRouterProvider', '$stateProvider', 'RestangularProvider',
   function($urlRouterProvider, $stateProvider, RestangularProvider){
