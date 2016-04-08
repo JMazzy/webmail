@@ -10,12 +10,14 @@ webmailApp.factory('messageService', ['Restangular', '$sce', function(Restangula
       Restangular.all("messages").getList().then(function(messages){
         _messages = messages.map( function(message) {
           message.body = $sce.trustAsHtml( message.body );
+          console.log(message);
           return message;
         });
       });
     };
 
     obj.getMessages = function(){
+        // console.log(_messages);
         return _messages;
     };
 
