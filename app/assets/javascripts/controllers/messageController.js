@@ -21,4 +21,8 @@ webmailApp.controller('messageCtrl', ['messageService', '$scope',  '$stateParams
       clickOutsideToClose:true,
     })
   };
+
+  $scope.refresh = function() [
+    
+  ]
 }]);
