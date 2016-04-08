@@ -1,23 +1,12 @@
 webmailApp.controller('messageCtrl', ['messageService', '$scope',  '$stateParams', '$sce', '$mdDialog', '$window', 'Restangular', function(messageService, $scope, $stateParams, $sce, $mdDialog, $window, Restangular){
 
   // messageService.buildIndex();
-  $scope.messages = [];
+  $scope.messages = messageService.getMessages();
 
-  // if ($scope.messages.length == 0) {
-  //   messageService.buildIndex();
-  //   $scope.messages = messageService.getMessages();
-  //   console.log($scope.messages);
-  // }
-
-
-  Restangular.all("messages").getList().then(function(messages){
-    $scope.messages = messages.map( function(message) {
-      message.body = $sce.trustAsHtml( message.body );
-      console.log(message);
-      return message;
-    });
-  });
-
+  if ($scope.messages.length === 0) {
+    messageService.buildIndex();
+    console.log($scope.messages);
+  }
 
   if( $stateParams.id ){
     messageService.updateCurrentMessage( $stateParams.id );

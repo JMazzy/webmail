@@ -8,10 +8,9 @@ webmailApp.factory('messageService', ['Restangular', '$sce', function(Restangula
 
     obj.buildIndex = function(){
       Restangular.all("messages").getList().then(function(messages){
-        _messages = messages.map( function(message) {
+        messages.forEach( function(message) {
           message.body = $sce.trustAsHtml( message.body );
-          console.log(message);
-          return message;
+          _messages.push(message);
         });
       });
     };
