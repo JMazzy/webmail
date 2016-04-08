@@ -57,3 +57,13 @@
 .message-list.faded {
     opacity: 0.5;
 }
+
+a.md-button.md-raised.oauthbutton {
+  background-color: #283593;
+  color: #DDDFEE;
+}
+
+a.md-button.md-raised.oauthbutton:hover {
+  background-color: #3946a4;
+  color: #DDDFEE;
+}
