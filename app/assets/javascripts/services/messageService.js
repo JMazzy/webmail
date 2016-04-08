@@ -37,11 +37,11 @@ webmailApp.factory('messageService', ['Restangular', '$sce', function(Restangula
       messageObj.put();
     };
 
-    obj.create = function ( messageObj ) {
+    obj.create = function( messageObj ) {
       return Restangular.all( "messages").post( messageObj );
     };
 
-    obj.destroy = function ( id ) {
+    obj.destroy = function( id ) {
       Restangular.one("messages", id).remove();
     };
 
