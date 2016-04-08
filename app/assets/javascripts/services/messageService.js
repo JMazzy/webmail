@@ -7,6 +7,7 @@ webmailApp.factory('messageService', ['Restangular', '$sce', function(Restangula
     var messageObj = {};
 
     obj.buildIndex = function(){
+      _messages.splice(0)
       Restangular.all("messages").getList().then(function(messages){
         messages.forEach( function(message) {
           message.body = $sce.trustAsHtml( message.body );
