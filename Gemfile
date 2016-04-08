@@ -42,5 +42,5 @@ end
 
 group :production do
   gem 'rails_12factor', '0.0.3'
-  # ruby '2.3.0'
+  ruby '2.3.0'
 end

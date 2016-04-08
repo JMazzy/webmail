@@ -17,16 +17,16 @@ webmailApp.config(['$urlRouterProvider', '$stateProvider', 'RestangularProvider'
       url: '/messages',
       templateUrl: '/templates/indexLayout.html',
       controller: 'messageCtrl',
-      resolve: {
-        // currentUser: ['Auth', function(Auth) {
-        // return Auth.currentUser();
-        // }],
-        allMessages: ['messageService', function(messageService){
-          return messageService.buildIndex().then( function() {
-            return messageService.getMessages();
-          });
-        }]
-      }
+      // resolve: {
+      //   // currentUser: ['Auth', function(Auth) {
+      //   // return Auth.currentUser();
+      //   // }],
+      //   allMessages: ['messageService', function(messageService){
+      //     messageService.buildIndex().then( function() {
+      //       return messageService.getMessages();
+      //     });
+      //   }]
+      // }
     })
 
     $urlRouterProvider.otherwise('/messages');
