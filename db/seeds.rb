@@ -11,7 +11,7 @@ def create_message
   m = Message.new
   m.from = Faker::Internet.email
   m.to = 'johnandkelseyscoolproject@gmail.com'
-  m.subject = Faker::Hipster.sentence(4)
+  m.subject = Faker::Hipster.sentence(3)
   m.body = Faker::Hipster.paragraph
   m.save!
 end
