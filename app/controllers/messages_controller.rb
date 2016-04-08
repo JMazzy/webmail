@@ -1,9 +1,10 @@
 class MessagesController < ApplicationController
 
   def index
+    gmailAPI = GmailAPI.new( session['email'], session['token'] )
 
-    @messages = GmailAPI.new.grab_all
-    # binding.pry
+    @messages = gmailAPI.grab_all
+
     render json: @messages
     # @messages = []
     # gmailclient = Gmail.connect('johnandkelseyscoolproject', 'CauchySchwartz')
