@@ -1,18 +1,39 @@
-<h4>Inbox</h4>
-<table>
-  <thead>
-    <tr>
-      <th>From</th>
-      <th> Subject</th>
-      <th>Date</th>
-    </tr>
-  </thead>
-  <tbody>
+<md-toolbar class="md-hue-2">
+  <div class="md-toolbar-tools">
+    <!-- <md&#45;button class="md&#45;icon&#45;button" aria&#45;label="Settings" ng&#45;disabled="true"> -->
+    <!-- <md&#45;icon>menu</md&#45;icon> -->
+    <!-- </md&#45;button> -->
+    <h2>
+      Mail Nurse
+    </h2>
+    <span flex></span>
 
-    <tr ng-repeat='message in messages'><a ui-sref="showMessage({id:message.id})">
-      <td><strong>From: {{ message.from }} </strong></td>
-      <td> <strong> {{ message.subject }}</strong> </td>
-      <td>{{ message.received_date | date }}</td>
-    </tr>
-  </tbody>
-</table>
+    <div class="animation" ng-class="{'loading': loading}"></div>
+    <span flex></span>
+    <md-button class="md-icon-button" aria-label="Favorite">
+    </md-button>
+    <md-button class="md-icon-button" aria-label="More">
+    <md-icon ng-click="refresh()">refresh</md-icon>
+    </md-button>
+  </div>
+</md-toolbar>
+
+<md-content flex>
+  <md-list class="message-list" ng-class="{'faded': loading}">
+    <md-list-item class="md-2-line message-item" ng-repeat="message in messages" ng-click="showEmail($event, message, $index)" ng-class="{ 'selected-item': $index == selectedIndex }">
+      <div class="md-list-item-text">
+        <h3>{{message.subject}}</h3>
+        <h4>{{message.from}}</h4>
+        <p>{{ message.received_date | date : "MMM d, yyyy, h:mm a" }}</p>
+      </div>
+      <md-divider inset></md-divider>
+      <!-- <div class="test"> -->
+      <!--   <div ng&#45;bind&#45;html="message.body"></div> -->
+      <!-- </div> -->
+    </md-list-item>
+  </md-list>
+</md-content>
+
+<md-content flex padding>
+
+</md-content>

@@ -1,4 +1,4 @@
-.email-item {
+.message-item {
   transition: all 0.3s;
 }
 
@@ -49,11 +49,11 @@
   to { background-position: 0 0 }
 }
 
-.email-list {
+.message-list {
   transition: opacity 0.5s;
   opacity: 1;
 }
 
-.email-list.faded {
+.message-list.faded {
     opacity: 0.5;
 }
