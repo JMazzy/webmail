@@ -1,29 +1,18 @@
 
-webmailApp.factory('messageService', ['Restangular', function(Restangular){
+webmailApp.factory('messageService', ['Restangular', '$sce', function(Restangular, $sce){
 
     var obj = {};
-    var _messages = {};
+    var _messages = [];
     var _currentMessage;
     var messageObj = {};
 
     obj.buildIndex = function(){
-      if( Object.keys(_messages).length === 0 ){
-        Restangular.all("messages").getList().then(function(data){
-          data.forEach( function(datum) {
-            messageObj = {
-              id: datum.id,
-              from: datum.from,
-              to: datum.to,
-              subject: datum.subject,
-              body: datum.body,
-              received_date: new Date(datum.received_date),
-              read: datum.read
-            }
-            _messages[datum.id] = messageObj;
-          });
-        _currentMessage = _messages[1];
+      Restangular.all("messages").getList().then(function(messages){
+        _messages = messages.map( function(message) {
+          message.body = $sce.trustAsHtml( message.body );
+          return message;
         });
-      }
+      });
     };
 
     obj.getMessages = function(){

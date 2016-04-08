@@ -1,6 +1,6 @@
-webmailApp.controller('messageCtrl', ['messageService', '$scope',  '$stateParams', '$sce', '$mdDialog', '$window', function(messageService, $scope, $stateParams, $sce, $mdDialog, $window ){
+webmailApp.controller('messageCtrl', ['messageService', '$scope',  '$stateParams', '$sce', '$mdDialog', '$window', 'allMessages', function(messageService, $scope, $stateParams, $sce, $mdDialog, $window, allMessages ){
 
-  $scope.messages = messageService.getMessages();
+  $scope.messages = allMessages;
 
   if( $stateParams.id ){
     messageService.updateCurrentMessage( $stateParams.id );
