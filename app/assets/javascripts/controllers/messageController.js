@@ -22,7 +22,7 @@ webmailApp.controller('messageCtrl', ['messageService', '$scope',  '$stateParams
     })
   };
 
-  $scope.refresh = function() [
-    
-  ]
+  $scope.refresh = function() {
+    messageService.buildIndex();
+  };
 }]);

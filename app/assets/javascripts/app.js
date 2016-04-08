@@ -13,26 +13,19 @@ webmailApp.config(['$urlRouterProvider', '$stateProvider', 'RestangularProvider'
 
 
    $stateProvider
-      .state('messages', {
-        url: '/messages',
-        templateUrl: '/templates/indexLayout.html',
-        controller: 'messageCtrl',
-        resolve: {
-          // currentUser: ['Auth', function(Auth) {
-          // return Auth.currentUser();
-          // }],
-          allMessages: ['messageService', function(messageService){
-            return messageService.buildIndex();
-          }]
-        }
-      })
-
-      .state('messages.show', {
-              url: '/messages/:id',
-              templateUrl: 'templates/showLayout.html',
-              controller: 'messageCtrl'
-          }
-      )
+    .state('messages', {
+      url: '/messages',
+      templateUrl: '/templates/indexLayout.html',
+      controller: 'messageCtrl',
+      resolve: {
+        // currentUser: ['Auth', function(Auth) {
+        // return Auth.currentUser();
+        // }],
+        allMessages: ['messageService', function(messageService){
+          return messageService.buildIndex();
+        }]
+      }
+    })
 
     $urlRouterProvider.otherwise('/messages');
 
