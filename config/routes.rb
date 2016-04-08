@@ -7,7 +7,9 @@ Rails.application.routes.draw do
     end
   end
 
-  get "/auth/google_oauth2/callback", to: "staticpages#index"
+  resources :staticpages, only: [:index, :login, :sess]
+
+  get "/auth/google_oauth2/callback", to: "staticpages#sess"
 
   root to: 'staticpages#login'
 end
