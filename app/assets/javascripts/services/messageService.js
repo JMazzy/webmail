@@ -7,11 +7,11 @@ webmailApp.factory('messageService', ['Restangular', '$sce', function(Restangula
     var messageObj = {};
 
     obj.buildIndex = function(){
+      _messages.splice(0)
       Restangular.all("messages").getList().then(function(messages){
-        _messages = messages.map( function(message) {
+        messages.forEach( function(message) {
           message.body = $sce.trustAsHtml( message.body );
-          console.log(message);
-          return message;
+          _messages.push(message);
         });
       });
     };

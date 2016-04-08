@@ -9,7 +9,7 @@ class GmailAPI
 
   def grab_all
     @email_objects = []
-    @emails = @gmail.inbox.emails
+    @emails = @gmail.inbox.emails( :unread, after: (Date.today - 1) )
     # @other = Mail.all
     # raise
     @emails.each do |email|
@@ -22,10 +22,11 @@ class GmailAPI
       obj = {
         name: email.from[0].name,
         from: "#{email.from[0].mailbox}@#{email.from[0].host}",
-        subject: email.subject,
+        subject: "#{email.subject}",
         body:  body,
         date: email.date
       }
+
       @email_objects << obj
     end
     @email_objects
