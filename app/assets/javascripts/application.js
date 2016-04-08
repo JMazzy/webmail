@@ -13,9 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require angular
-//= require angular-ui-router
 //= require angular-devise
-
-//= require underscore
-//= require restangular
+//= require underscore-min
+//= require angular-material
+//= require angular-ui-router.min
+//= require restangular.min
 //= require_tree .
