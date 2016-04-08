@@ -4,7 +4,7 @@
     <!-- <md&#45;icon>menu</md&#45;icon> -->
     <!-- </md&#45;button> -->
     <h2>
-      Mail Nurse
+      Webmail
     </h2>
     <span flex></span>
 
@@ -20,7 +20,7 @@
 
 <md-content flex>
   <md-list class="message-list" ng-class="{'faded': loading}">
-    <md-list-item class="md-2-line message-item" ng-repeat="message in messages" ng-click="showEmail($event, message, $index)" ng-class="{ 'selected-item': $index == selectedIndex }">
+    <md-list-item class="md-2-line message-item" ng-repeat="message in messages" ng-click="showMessage($event, message, $index)" ng-class="{ 'selected-item': $index == selectedIndex }">
       <div class="md-list-item-text">
         <h3>{{message.subject}}</h3>
         <h4>{{message.from}}</h4>

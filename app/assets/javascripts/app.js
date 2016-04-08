@@ -27,7 +27,7 @@ webmailApp.config(['$urlRouterProvider', '$stateProvider', 'RestangularProvider'
         }
       })
 
-      .state('showMessage', {
+      .state('messages.show', {
               url: '/messages/:id',
               templateUrl: 'templates/showLayout.html',
               controller: 'messageCtrl'
