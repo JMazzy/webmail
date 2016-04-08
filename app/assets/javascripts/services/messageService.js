@@ -34,6 +34,10 @@ webmailApp.factory('messageService', ['Restangular', function(Restangular){
         return _currentMessage;
     };
 
+    obj.updateCurrentMessage = function(id){
+        _currentMessage = messages[id];
+    };
+
     obj.show = function( id ) {
       return Restangular.one( "messages", id).get();
     };

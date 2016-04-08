@@ -27,6 +27,13 @@ webmailApp.config(['$urlRouterProvider', '$stateProvider', 'RestangularProvider'
         }
       })
 
+      .state('showMessage', {
+              url: '/messages/:id',
+              templateUrl: 'templates/showLayout.html',
+              controller: 'messageCtrl'
+          }
+      )
+
     $urlRouterProvider.otherwise('/messages');
 
 }]);

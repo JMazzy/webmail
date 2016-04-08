@@ -9,9 +9,9 @@
   </thead>
   <tbody>
 
-    <tr ng-repeat='message in messages'>
+    <tr ng-repeat='message in messages'><a ui-sref="showMessage({id:message.id})">
       <td><strong>From: {{ message.from }} </strong></td>
-      <td> <strong> {{ message.subject }}</strong>    {{ message.body }}</td>
+      <td> <strong> {{ message.subject }}</strong> </td>
       <td>{{ message.received_date | date }}</td>
     </tr>
   </tbody>
