@@ -33,6 +33,6 @@ webmailApp.config(['$urlRouterProvider', '$stateProvider', 'RestangularProvider'
 
 }]);
 
-webmailApp.run(function($rootScope, $location){
+webmailApp.run(['$rootScope', '$location', function($rootScope, $location){
  $rootScope.$on("$stateChangeError", console.log.bind(console));
-});
+}]);
