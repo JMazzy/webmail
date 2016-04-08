@@ -3,8 +3,10 @@ include ActionView::Helpers::SanitizeHelper
 
 
 class GmailAPI
-  def initialize
-    @gmail = Gmail.connect(ENV["email"], ENV["password"])
+  def initialize( email, token )
+
+    @gmail = Gmail.connect( :xoauth2, email, token )
+
   end
 
   def grab_all

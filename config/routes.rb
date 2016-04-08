@@ -6,6 +6,8 @@ Rails.application.routes.draw do
       resources :messages, only: [:index, :show]
     end
   end
-  
-  root to: 'staticpages#index'
+
+  get "/auth/google_oauth2/callback", to: "staticpages#index"
+
+  root to: 'staticpages#login'
 end
