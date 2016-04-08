@@ -1,6 +1,15 @@
-
-</br>
-<h4>{{ currentMessage['subject'] }}</h4>
-<p>{{ showPin['from'] }}    {{ showPin['date'] }}</p>
-<p>{{ showPin['body'] }}</p>
-<hr/>
+<md-dialog>
+  <md-toolbar>
+    <div class="md-toolbar-tools">{{ currentMessage.subject }}
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="close()">
+        <md-icon>close</md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-content layout-padding>
+    <!-- <div ng-bind-html="currentMessage.body">
+    </div> -->
+    {{ currentMessage.body }}
+  </md-content>
+</md-dialog>
