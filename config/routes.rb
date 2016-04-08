@@ -6,6 +6,6 @@ Rails.application.routes.draw do
       resources :messages, only: [:index, :show]
     end
   end
-  
-  root to: 'staticpages#index'
+
+  root to: 'static_pages#login'
 end

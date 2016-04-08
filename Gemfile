@@ -13,7 +13,7 @@ gem 'angularjs-rails', '1.5.0'
 gem 'angular_rails_csrf', '1.0.4'
 gem 'figaro', '1.1.1'
 gem 'premailer'
-gem 'omniauth-google-oauth2', '~> 0.4.1'
+gem 'omniauth-google-oauth2'
 
 gem 'devise', '3.5.6'
 source "https://rails-assets.org" do
